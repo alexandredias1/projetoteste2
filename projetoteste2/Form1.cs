@@ -1,3 +1,5 @@
+using MySql.Data.MySqlClient;
+
 namespace projetoteste2
 {
     public partial class Form1 : Form
@@ -16,6 +18,10 @@ namespace projetoteste2
             listViewClientes.Columns.Add("ID", 50, HorizontalAlignment.Left);
             listViewClientes.Columns.Add("Nome", 150, HorizontalAlignment.Left);
             listViewClientes.Columns.Add("Email", 200, HorizontalAlignment.Left);
+            listViewClientes.Columns.Add("Idade", 50, HorizontalAlignment.Left);
+            listViewClientes.Columns.Add("Data-Criação", 100, HorizontalAlignment.Left);
+            listViewClientes.Columns.Add("Status", 50, HorizontalAlignment.Left);
+            listViewClientes.Columns.Add("Salário", 50, HorizontalAlignment.Left);
             listViewClientes.FullRowSelect = true; // Ativa a seleção da linha toda
             listViewClientes.GridLines = true; // Adiciona linhas de grade para melhor visualização
                                                // Carrega os usuarioss na ListView
@@ -31,7 +37,7 @@ namespace projetoteste2
                 conexao.Open();
 
                 // Query SQL para selecionar todos os registros da tabela 'usuarios'
-                string query = "SELECT UsuarioID, nome, email FROM usuarios";
+                string query = "SELECT UsuarioID, nome, email, idade, DataCriacao, Status, salario FROM usuarios, usuarioperfil";
                 MySqlCommand cmd = new MySqlCommand(query, conexao);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -45,6 +51,10 @@ namespace projetoteste2
                     ListViewItem item = new ListViewItem(reader["UsuarioID"].ToString());
                     item.SubItems.Add(reader["nome"].ToString());
                     item.SubItems.Add(reader["email"].ToString());
+                    item.SubItems.Add(reader["idade"].ToString());
+                    item.SubItems.Add(reader["DataCriacao"].ToString());
+                    item.SubItems.Add(reader["Status"].ToString());
+                    item.SubItems.Add(reader["Salario"].ToString());
                     listViewClientes.Items.Add(item);
                 }
 
@@ -56,3 +66,5 @@ namespace projetoteste2
                 MessageBox.Show($"Erro ao carregar usuarioss: {ex.Message}");
             }
         }
+    }
+}

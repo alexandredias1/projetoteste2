@@ -33,9 +33,9 @@
             // 
             // listViewClientes
             // 
-            listViewClientes.Location = new Point(178, 108);
+            listViewClientes.Location = new Point(132, 54);
             listViewClientes.Name = "listViewClientes";
-            listViewClientes.Size = new Size(461, 229);
+            listViewClientes.Size = new Size(612, 322);
             listViewClientes.TabIndex = 0;
             listViewClientes.UseCompatibleStateImageBehavior = false;
             // 
